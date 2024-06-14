@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -17,6 +19,18 @@ Route::group(['prefix' => 'markers'], function () {
     Route::put('/{id}', [MarkerController::class, 'update'])->name('markers.update');
     Route::delete('/{id}', [MarkerController::class, 'destroy'])->name('markers.destroy');
 });
+
+Route::post('/session', [StripeController::class, 'session'])->name('session');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
+ 
+Route::get('shop', [ProductsController::class, 'index']);
+Route::get('cart', [ProductsController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('add_to_cart');
+Route::patch('update-cart', [ProductsController::class, 'update'])->name('update_cart');
+Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
+
+
 
 
 
