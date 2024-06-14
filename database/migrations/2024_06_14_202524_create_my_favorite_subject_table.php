@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('markers', function (Blueprint $table) {
+        Schema::create('my_favorite_subject', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->string('image');
             $table->string('description');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('website');
+            $table->boolean('is_awesome');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('markers');
+        Schema::dropIfExists('my_favorite_subject');
     }
 };

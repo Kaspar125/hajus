@@ -36,8 +36,11 @@ class MarkerController extends Controller
             'longitude' => 'required|numeric',
             'description' => 'nullable',
         ]);
-
-        Markers::create($validatedData);
+        try {
+            Markers::create($validatedData);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('An error occurred while creating the marker.');
+        }
 
         return redirect()->route('markers.index')
             ->with('success', 'Marker deleted successfully');

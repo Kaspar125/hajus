@@ -57,7 +57,7 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp): View
     {
-        Gate::authorize('update', $chirp);
+        $this->authorize('update', $chirp);
  
         return view('chirps.edit', [
             'chirp' => $chirp,
@@ -69,7 +69,7 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp): RedirectResponse
     {
-        Gate::authorize('update', $chirp);
+        $this->authorize('update', $chirp);
  
         $validated = $request->validate([
             'message' => 'required|string|max:255',
@@ -85,8 +85,7 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp): RedirectResponse
     {
-        Gate::authorize('delete', $chirp);
- 
+        $this->authorize('delete', $chirp);
         $chirp->delete();
  
         return redirect(route('chirps.index'));

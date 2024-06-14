@@ -33,6 +33,10 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
+                ->name('comments.destroy')
+                ->middleware('check.admin.user')
+                ;
 });
 
 Route::middleware('auth')->group(function () {
@@ -56,4 +60,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
+        ->name('comments.destroy')
+        ->middleware('check.admin.user');
 });

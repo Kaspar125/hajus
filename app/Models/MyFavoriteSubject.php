@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Markers extends Model
+class MyFavoriteSubject extends Model
 {
     use HasFactory;
     protected $fillable = 
-    [
-        'name',
-        'description',
-        'longitude',
-        'latitude',
-    ];
+    ['title', 'image', 'description', 'website', 'is_awesome'];
 }

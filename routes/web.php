@@ -7,19 +7,18 @@ use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\CommentController;
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/weather', [WeatherController::class, 'getWeather']);
-Route::group(['prefix' => 'markers'], function () {
-    Route::get('/', [MarkerController::class, 'index'])->name('markers.index');
-    Route::get('/create', [MarkerController::class, 'create'])->name('markers.create');
-    Route::post('/', [MarkerController::class, 'store'])->name('markers.store');
-    Route::get('/{id}/edit', [MarkerController::class, 'edit'])->name('markers.edit');
-    Route::put('/{id}', [MarkerController::class, 'update'])->name('markers.update');
-    Route::delete('/{id}', [MarkerController::class, 'destroy'])->name('markers.destroy');
-});
+Route::get('/markers', [MarkerController::class, 'index'])->name('markers.index');
+Route::get('/markers/create', [MarkerController::class, 'create'])->name('markers.create');
+Route::post('/markers', [MarkerController::class, 'store'])->name('markers.store');
+Route::get('/markers/{id}/edit', [MarkerController::class, 'edit'])->name('markers.edit');
+Route::put('/markers/{id}', [MarkerController::class, 'update'])->name('markers.update');
+Route::delete('/markers/{id}', [MarkerController::class, 'destroy'])->name('markers.destroy');
 
 Route::post('/session', [StripeController::class, 'session'])->name('session');
 Route::get('/success', [StripeController::class, 'success'])->name('success');
