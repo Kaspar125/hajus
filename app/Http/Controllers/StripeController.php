@@ -18,17 +18,14 @@ class StripeController extends Controller
             $product_name = $details['product_name'];
             $total = $details['price'];
             $quantity = $details['quantity'];
- 
-            $two0 = "00";
-            $unit_amount = "$total$two0";
- 
+            
             $productItems[] = [
                 'price_data' => [
                     'product_data' => [
                         'name' => $product_name,
                     ],
                     'currency'     => 'USD',
-                    'unit_amount'  => $unit_amount,
+                    'unit_amount'  => (int)($total * 100),
                 ],
                 'quantity' => $quantity
             ];

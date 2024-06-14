@@ -197,7 +197,6 @@ function saveMarkerDetails() {
     // Close the modal programmatically
     closeModal();
 }
-
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.map.key') }}&loading=async&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API') }}&loading=async&callback=initMap"></script>
 </x-guest-layout>

@@ -1,6 +1,6 @@
 @extends('layout')
      
-@section('content')
+{{-- @section('content') --}}
       
 <div class="row">
     @foreach($products as $product)
