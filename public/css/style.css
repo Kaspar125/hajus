@@ -6,12 +6,11 @@ body {
     padding: 0px;
     margin-bottom: 20px;
 }
-.img_thumbnail img {
+/* .img_thumbnail img {
     width: 100%;
-}
+} */
 .img_thumbnail .caption {
     margin: 7px;
-    text-align: center;
 }
 .dropdown {
     float: right;

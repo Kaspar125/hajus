@@ -6,6 +6,7 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ChirpController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,7 +31,8 @@ Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('
 Route::patch('update-cart', [ProductsController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
 
-
+Route::post('/chirps/{chirp}/comments', [ChirpController::class, 'storeComment'])->name('chirps.comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 
 
@@ -43,4 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::resource('chirps', ChirpController::class)
+->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';
