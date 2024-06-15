@@ -16,12 +16,12 @@ host('ta22kaasik.itmajakas.ee')
     ->set('deploy_path','~/domeenid/www.ta22kaasik.itmajakas.ee/hajus2')
     ->set('branch','main');
 
-set('repository', 'git@hgithub.com/Kaspar125/hajus');
+set('repository', 'git@github.com:Kaspar125/hajus.git');
 
 // tasks
 
 task('opcache:clear', function () {
-    run('killall php82-cgi || true');
+    run('killall php83-cgi || true');
 })->desc('Clear opcache');
 
 task('build:node', function() {
