@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class StripeController extends Controller
 {
@@ -48,7 +49,9 @@ class StripeController extends Controller
  
     public function success()
     {
+        Session::forget('cart');
         return "Thanks for you order You have just completed your payment.";
+
     }
  
     public function cancel()

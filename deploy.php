@@ -13,7 +13,7 @@ set('keep_release', 2);
 host('ta22kaasik.itmajakas.ee')
     ->setHostname('ta22kaasik.itmajakas.ee')
     ->set('http_user','virt118425')
-    ->set('deploy_path','~/domeenid/www.ta22maarma.itmajakas.ee/hajus2')
+    ->set('deploy_path','~/domeenid/www.ta22kaasik.itmajakas.ee/hajus2')
     ->set('branch','main');
 
 set('repository', 'git@hgithub.com/Kaspar125/hajus');

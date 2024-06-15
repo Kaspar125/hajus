@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MyFavoriteSubjectController;
+use App\Models\Product;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,6 +37,7 @@ Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('
 Route::post('/chirps/{chirp}/comments', [ChirpController::class, 'storeComment'])->name('chirps.comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
+Route::get('/products/records', [ProductsController::class, 'records'])->name('records');
 
 
 Route::get('/dashboard', function () {
@@ -52,5 +57,9 @@ Route::middleware('auth')->group(function () {
 Route::resource('chirps', ChirpController::class)
 ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
+
+Route::apiResource('product', ApiController::class);
+// Route::resource('api/products',ApiController::class)
+// ->only(['index']);
 
 require __DIR__.'/auth.php';

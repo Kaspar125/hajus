@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Product; 
 class ProductsController extends Controller
@@ -56,5 +56,11 @@ class ProductsController extends Controller
             }
             session()->flash('success', 'Product successfully removed!');
         }
+    }
+    public function records()
+    {
+        $responseData = Http::get('https://hajusrakendus.ta22maarma.itmajakas.ee/api/records')->json();
+
+        return view('products.records', ['products' => $responseData]);
     }
 }
