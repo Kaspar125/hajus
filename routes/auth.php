@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
+use App\Http\Middleware\CheckAdminUser;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -60,7 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
-    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
-        ->name('comments.destroy')
-        ->middleware('check.admin.user');
+                Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
+                ->name('comments.destroy')
+                ->middleware(CheckAdminUser::class);
 });

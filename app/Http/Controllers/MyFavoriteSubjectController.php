@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MyFavoriteSubject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MyFavoriteSubjectController extends Controller
 {
@@ -45,5 +47,8 @@ public function destroy($id)
     $subject->delete();
     return response()->json(null);
 }
-
+public function add()
+    {
+        return view('subject.index');
+    }
 }
