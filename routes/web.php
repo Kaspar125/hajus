@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/weather', [WeatherController::class, 'getWeather']);
+Route::get('/weather', [WeatherController::class, 'getWeather'])->name('weather');
 Route::get('/markers', [MarkerController::class, 'index'])->name('markers.index');
 Route::get('/markers/create', [MarkerController::class, 'create'])->name('markers.create');
 Route::post('/markers', [MarkerController::class, 'store'])->name('markers.store');
@@ -24,7 +24,7 @@ Route::post('/session', [StripeController::class, 'session'])->name('session');
 Route::get('/success', [StripeController::class, 'success'])->name('success');
 Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
  
-Route::get('shop', [ProductsController::class, 'index']);
+Route::get('shop', [ProductsController::class, 'index'])->name('shop');
 Route::get('cart', [ProductsController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('add_to_cart');
 Route::patch('update-cart', [ProductsController::class, 'update'])->name('update_cart');
